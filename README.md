@@ -22,7 +22,7 @@ After installing smartos for the latest iso we need to alter a couple of things
     echo "root_authorized_keys_file=authorized_keys" >> /usbkey/config
 
 #### Networking
-After installing smartos in vmware the could an issue with bridging. run `dladm show-link` if there's no vmwarebr0 we need to place the folling scripts.
+After installing smartos in vmware there could an issue with bridging. run `dladm show-link` if there's no vmwarebr0 we need to place the folling scripts.
 
     vi /opt/custom/methods/vmwarebr-smf.ksh
       - place the korn shell script here
