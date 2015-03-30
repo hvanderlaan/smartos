@@ -1,0 +1,58 @@
+<?xml version='1.0'?>
+ 
+<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+<service_bundle type='manifest' name='vmwarebr-smf'>
+
+    <service
+	name='network/vmwarebr-smf'
+	type='service'
+	version='0.1a'>
+
+	<dependency
+		name='network'
+		grouping='require_all'
+		restart_on='none'
+		type='service'>
+		<service_fmri value='svc:/milestone/network:default'/>
+	</dependency>
+	<dependent
+		name='vmadmd'
+		grouping='require_all'
+		restart_on='error'>
+		<service_fmri value='svc:/system/smartdc/vmadmd:default' /> 
+	</dependent>   
+
+	<instance name='default' enabled='true'>
+
+	<exec_method
+		type='method'
+		name='start'
+		exec='/opt/custom/methods/vmwarebr-smf.ksh start'
+		timeout_seconds='20' />
+	<exec_method
+		type='method'
+		name='stop'
+		exec='/opt/custom/methods/vmwarebr-smf.ksh stop'
+		timeout_seconds='20' />
+
+	<property_group name='startd' type='framework'>
+		<propval name='duration' type='astring' value='transient' />
+	</property_group>
+
+	<template>
+		<common_name>
+			<loctext xml:lang='C'>
+				Vmware bridge
+			</loctext>
+		</common_name>
+		<documentation>
+			<doc_link name='vmwarebr-smf.ksh' uri='file:///opt/custom/methods/vmwarebr-smf.ksh'/>
+		</documentation>
+	</template>
+
+	</instance>
+
+	<stability value='Unstable'/>
+    </service>
+ 
+</service_bundle>
