@@ -34,8 +34,8 @@ After installing smartos in vmware there could an issue with bridging. run `dlad
 
 ### lx zone configuration
     {
-   	"alias": "lx zone template",
-   	"brand": "lx",
+    	"alias": "lx zone template",
+    	"brand": "lx",
     	"kernel_version": "3.13.0",
     	"image_uuid": "<ubuntu uuid>",
     	"quota": 20,
