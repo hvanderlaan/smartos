@@ -8,8 +8,8 @@ These technologies are combined into a single operating system, providing an arb
 ### VMware workstation 11
 In oder to test this hypervisor I want to run this in vmware workstation 11. Before we can do this we need to alter some rights on the vmware interfaces. We need to enable promiscuous mode on /dev/vmnet0 (the bridged interface).
 
-    sudo chgrp <you group> /dev/vmnet0
-    sudo chmod g+rw /dev/vmnet0
+    sudo chgrp <you group> /dev/vmnet*
+    sudo chmod g+rw /dev/vmnet*
 
 ### SmartOs
 After installing smartos for the latest iso we need to alter a couple of things
@@ -32,4 +32,21 @@ After installing smartos in vmware there could an issue with bridging. run `dlad
     /usr/sbin/svccfg import /opt/custom/smf/vmwarebr-smf.xml
     /usr/bin/svcs -l vmwarebr-smf
 
-
+### lx zone configuration
+    {
+   	"alias": "lx zone template",
+   	"brand": "lx",
+    	"kernel_version": "3.13.0",
+    	"image_uuid": "<ubuntu uuid>",
+    	"quota": 20,
+    	"max_physical_memory": 1024,
+    	"resolvers": ["8.8.8.8", "8.8.4.4"],
+    	"nics": [{
+    		"nic_tag": "admin",
+    		"ip": "10.0.0.100",
+    		"netmask": "255.255.255.0",
+    		"gateway": "10.0.0.1",
+    		"allow_ip_spoofing": true,
+    		"primary": true
+    	}]
+    }
