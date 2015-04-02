@@ -1,6 +1,6 @@
 #!/usr/bin/ksh
 
-case ${1} in;
+case ${1} in
 	'start')
 		dladm create-bridge -l e1000g0 vmwarebr
 		;;
